@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sample</title>
+  <style type="text/css" href="./index.css"></style>
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" herf="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+
+  </head>
+<body>
+
+
+<nav class="header">
+  <div class="wrapper">
+    <a href="/" class="brand-logo">Quote</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <% if user_signed_in? %>
+      <div class= "grid-6">
+        <%= link_to "SignOut", destroy_user_session_path, method: :delete %>
+        <li><a href="/blogs/new">New</a></li>
+      </div>
+    <% else %>
+      <div class= "grid-6">
+        <%= link_to "LogIn", new_user_session_path, class: 'post' %>
+        <%= link_to "Start", new_user_registration_path, class: 'post' %>
+      </div>
+    <% end %>
+    </ul>
+  </div>
+</nav>
+
+<div class="contents-row" >
+  <% @blogs.each do |blog| %>
+    <div class="content_post" >
+      <% if user_signed_in? && current_user.id == blog.user_id %>
+        <li>
+          <%= link_to '言い直す', "/blogs/#{blog.id}/edit", method: :get, data: {confirm: "変革を望みますか？"} %>
+        </li>
+        <li>
+          <%= link_to 'この私が破壊する！！', "/blogs/#{blog.id}", method: :delete, data: {confirm: "跪き、許しを請う姿を見せてくれ"} %>
+        </li>
+      <% end %>
+      <%= simple_format(blog.text) %>
+    </div>
+  <% end %>
+</div>
+<nav class="footer">
+  <%= paginate(@blogs) %>
+</nav>
+<script type="text/javascript" src="./app.js"></script>
+</body>
+</html>

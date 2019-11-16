@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+.header{
+  background-color: black;
+  height: 100px;
+  width: 100vw;
+}
+.grid-6{
+  display: flex;
+}
+.footer{
+  margin-bottom: 0;
+  height: 100px;
+  background-color: black;
+}
+.pagination{
+  height: 100px;
+  width: 100vw;
+  background-color: black;
+  bottom: 0%;
+  margin-bottom: 0;
+}
+.contents-row{
+  width: 100vw;
+  height: calc(100vh - 200px);
+  overflow: scroll;
+  background-color: aliceblue;
+}
+.content_post{
+  font-size: 20px;
+  border-radius: 7px;
+  width:50vw;
+  height: 15vw;
+  border-color: gray;
+  border-width: 10px;
+  margin: 5px auto;
+  background-color: goldenrod;
+  overflow: scroll;
+}
+li{
+  list-style: none;
+}
